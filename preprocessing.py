@@ -192,8 +192,8 @@ def nfl_pp(df, teams):
         else:
             at.append(value2)
         
-    df.insert(2, 'Home Abbreviation', ht)
-    df.insert(4, 'Away Abbreviation', at)
+    df.insert(2, 'Abbreviation (home)', ht)
+    df.insert(4, 'Abbreviation (away', at)
 
     del ht, at
 
