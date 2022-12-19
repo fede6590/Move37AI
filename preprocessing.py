@@ -52,9 +52,9 @@ def game_data_pp_2(df, teams):
     for name in df['opp']:
         value = get_key_from_value(teams, name)
         if not value:
-            abbs.append(pd.NA)
+            abbs.append(None)
         else:
-            abbs.append(value)
+            abbs.append(None)
 
     df.insert(9, 'Opposing abbreviation', abbs)
 
@@ -167,7 +167,7 @@ def nfl_elo_pp_2(df, teams):
         if row['team2'] in teams:
             value2 = teams[row['team2']]
         else:
-            value2 = pd.NA
+            value2 = None
 
         t1.append(value1)
         t2.append(value2)
