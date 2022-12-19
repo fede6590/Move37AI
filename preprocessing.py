@@ -74,9 +74,11 @@ def game_data_pp_2(df, teams):
 def game_data_pp_3(df):
     home1 = []
     home2 = []
+    home3 = []
     away1 = []
     away2 = []
-    cols = ['Away?', 'Team', 'Abbreviation', 'Opposing team', 'Opposing abbreviation']
+    away3 = []
+    cols = ['Away?', 'Team', 'Abbreviation', 'Opposing team', 'Opposing abbreviation', 'Score', 'Opposing score']
 
     for _, row in df[cols].iterrows():
         if row['Away?'] == '@':
@@ -84,11 +86,16 @@ def game_data_pp_3(df):
             away1.append(row['Team'])
             home2.append(row['Opposing abbreviation'])
             away2.append(row['Abbreviation'])
+            home3.append(row['Opposing score'])
+            away3.append(row['Score'])
         else:
             home1.append(row['Team'])
             away1.append(row['Opposing team'])
             home2.append(row['Abbreviation'])
             away2.append(row['Opposing abbreviation'])
+            home3.append(row['Score'])
+            away3.append(row['Opposing score'])
+
     
     df = df.drop(cols, axis=1)
 
@@ -96,8 +103,10 @@ def game_data_pp_3(df):
     df.insert(4, 'Abbreviation (home)', home2)
     df.insert(5, 'Away Team', away1)
     df.insert(6, 'Abbreviation (away)', away2)
+    df.insert(7, 'Home Score', home3)
+    df.insert(8, 'Away Score', away3)
 
-    del home1, home2, away1, away2, cols
+    del home1, home2, home3, away1, away2, away3, cols
 
     return df
 
@@ -193,7 +202,7 @@ def nfl_pp(df, teams):
             at.append(value2)
         
     df.insert(2, 'Abbreviation (home)', ht)
-    df.insert(4, 'Abbreviation (away', at)
+    df.insert(4, 'Abbreviation (away)', at)
 
     del ht, at
 
